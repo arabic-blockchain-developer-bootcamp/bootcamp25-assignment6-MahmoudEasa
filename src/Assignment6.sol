@@ -14,7 +14,7 @@ contract Assignment6 {
     // Modifier to check if sender has enough balance
     modifier hasEnoughBalance(uint amount) {
         // Fill in the logic using require
-	require(balances[msg.sender] >= amount, "No enough balance");
+        require(balances[msg.sender] >= amount, "No enough balance");
         _;
     }
 
@@ -24,10 +24,10 @@ contract Assignment6 {
     // - Emit the `FundsDeposited` event
     function deposit() external payable {
         // increment user balance in balances mapping 
-	balances[msg.sender] += msg.value;
+        balances[msg.sender] += msg.value;
 
         // emit suitable event
-	emit FundsDeposited(msg.sender, msg.value);
+        emit FundsDeposited(msg.sender, msg.value);
     }
 
     // Function to withdraw Ether
@@ -38,14 +38,13 @@ contract Assignment6 {
     // - Emit the `FundsWithdrawn` event
     function withdraw(uint amount) external hasEnoughBalance(amount) {
         // decrement user balance from balances mapping 
-	balances[msg.sender] -= amount;
+        balances[msg.sender] -= amount;
 
         // send tokens to the caller
-	payable(msg.sender).transfer(amount);
+        payable(msg.sender).transfer(amount);
 
         // emit suitable event
-	emit FundsWithdrawn(msg.sender, amount);
-
+        emit FundsWithdrawn(msg.sender, amount);
     }
 
     // Function to check the contract balance
@@ -54,7 +53,6 @@ contract Assignment6 {
     // - Return the contract's balance
     function getContractBalance() public view returns (uint) {
         // return the balance of the contract
-	return balances[msg.sender];
-
+        return balances[msg.sender];
     }
 }
